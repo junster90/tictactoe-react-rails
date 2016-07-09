@@ -1,8 +1,8 @@
 class Board
   attr_accessor :cells
   
-  def initialize
-    @cells = Array.new(9)
+  def initialize(cells: nil)
+    @cells = cells || Array.new(9)
   end
 
   def rows
@@ -29,33 +29,37 @@ class Board
   end
 
   def full?
-    cells.all? {|i| i.is_a?(String) }
+    cells.all? {|i| i.nil? == false }
+  end
+
+  def clean?
+    cells.all? &:nil?
   end
 
   def tie?
-    !winner && full?
+    winner == nil && full?
   end
 
   def gameover?
-    winner || tie?
+    winner != nil || tie?
   end
 
   def winner
     winner = nil
     rows.each do |row|
-      if row.uniq.length == 1
+      if row.uniq.length == 1 && row.uniq.all?(&:nil?) == false
         winner = row.first
       end
     end
 
     columns.each do |column|
-      if column.uniq.length == 1
+      if column.uniq.length == 1 && column.uniq.all?(&:nil?) == false
         winner = column.first
       end
     end
 
     diagonals.each do |diagonal|
-      if diagonal.uniq.length == 1
+      if diagonal.uniq.length == 1 && diagonal.uniq.all?(&:nil?) == false
         winner = diagonal.first
       end
     end
@@ -75,11 +79,11 @@ class Board
     return available_cells
   end
 
-  def place_marker(marker, cell)
-    cells[cell] = marker
+  def place_marker(marker, index)
+    cells[index] = marker
   end
 
-  def reset_cell(cell)
-    cells[cell] = nil
+  def reset_cell(index)
+    cells[index] = nil
   end
 end

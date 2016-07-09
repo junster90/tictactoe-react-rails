@@ -1,12 +1,15 @@
 class Game < ApplicationRecord
-  attr_accessor :board, :current_player
+  attr_accessor :board
 
-  before_create :randomize_markers
-  after_create  :randomize_starting_player
+  before_create :randomize_markers, :randomize_starting_player
 
   def self.setup
     game = self.create(board: Board.new)
     return game
+  end
+
+  def player_2
+    player_1 == 'x' ? 'o' : 'x'
   end
 
   private
@@ -16,6 +19,6 @@ class Game < ApplicationRecord
   end
 
   def randomize_starting_player
-    self.current_player = [self.player, self.computer].sample
+    self.player_1 = [self.player, self.computer].sample
   end
 end

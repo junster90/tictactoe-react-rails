@@ -1,0 +1,61 @@
+.game {
+  width: 60vw;
+  height: 60vw;
+  margin: 0 auto;
+  font-size: 10em;
+
+  @media screen and (max-device-width: 768px){
+    width: 90vw;
+    height: 90vw;
+  }
+  @media screen and (max-device-width: 767px){
+    font-size: 5em;
+  }
+
+  .board {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing:border-box;
+
+    .cell {
+      float: left;
+      width: 33.3333333333%;
+      height: 33.3333333333%;
+      box-sizing: border-box;
+      text-align: center;
+      font-family: FontAwesome;
+      padding-top: 5%;
+      
+      &:nth-child(-n+3) {
+        border-bottom: 5px solid black;
+      }
+
+      &:nth-child(n+7) {
+        border-top: 5px solid black;
+      }
+
+      &:nth-child(3n+1) {
+        border-right: 5px solid black;
+      }
+
+      &:nth-child(3n+3) {
+        border-left: 5px solid black;
+      }
+    }
+
+    .x:before {
+      content: "\f00d";
+    }
+
+    .o:before {
+      content: "\f10c";
+    }
+  }
+
+  .message-bar {
+    p {
+      font-size: 24px;
+    }
+  }
+}

@@ -13,9 +13,12 @@ class Game extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     $.get('/new', (response) => {
       this.setState({...response});
+      if(this.state.playerTurn == false){
+        this._getComputerMove();
+      }
     });
   }
 
@@ -26,21 +29,19 @@ class Game extends React.Component {
       return;
     }
 
-    board[key] = this.state.playerMarker;
+    board[key] = this.state.player;
 
     this.setState({board: board, playerTurn: false});
     this._getComputerMove();
   }
 
-  _getComputerMove(){
-    if (!this.state.playerTurn){
-      this.setState({message: "Computer's turn. Computer is thinking..."});
+  _getComputerMove() {
+    this.setState({message: "Computer's turn. Computer is thinking..."});
 
-      $.get('/computer_move', {board: this.state.board}).success((response) => {
-        console.log(response);
-        this.setState({...response});
-      });
-    }
+    $.get('/computer_move', {id: this.state.id, board: this.state.board}).success((response) => {
+      console.log(response);
+      this.setState({...response});
+    });
   }
 
   render() {

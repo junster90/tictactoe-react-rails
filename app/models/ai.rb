@@ -1,5 +1,5 @@
 class AI
-  def negamax(board, player1, player2, depth=0)
+  def negamax(board, player1, player2, depth = 0)
     if board.tie?
       return 0
     elsif board.gameover? #if current player sees gameover, opponent must have won.
