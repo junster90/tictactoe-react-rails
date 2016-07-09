@@ -12,9 +12,9 @@ class GameController < ApplicationController
     game = Game.find(params[:id])
     game.board = Board.new(cells: board_params)
 
-    updated_game = AiDecisionService.updated_board_state(game)
+    game = AiDecisionService.updated_board_state(game) unless game.board.gameover?
 
-    render json: GameStateFormatter.format(game, true)
+    render json: GameStateFormatter.format(game)
   end
 
   private

@@ -6,7 +6,6 @@ class Game extends React.Component {
       gameover: null,
       player: null,
       computer: null,
-      winner: null,
       playerTurn: null,
       board: null,
       message: null
@@ -14,8 +13,13 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
+    this._newGame();
+  }
+
+  _newGame(){
     $.get('/new', (response) => {
       this.setState({...response});
+
       if(this.state.playerTurn == false){
         this._getComputerMove();
       }
@@ -24,7 +28,7 @@ class Game extends React.Component {
 
   _placeMarker(key) {
     let board = this.state.board;
-    const invalid = board[key] || this.state.gameover || !this.state.playerTurn
+    const invalid = board[key] || !this.state.playerTurn
     if(invalid){
       return;
     }
@@ -39,7 +43,6 @@ class Game extends React.Component {
     this.setState({message: "Computer's turn. Computer is thinking..."});
 
     $.get('/computer_move', {id: this.state.id, board: this.state.board}).success((response) => {
-      console.log(response);
       this.setState({...response});
     });
   }
