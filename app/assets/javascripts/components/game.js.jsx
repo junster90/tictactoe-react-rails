@@ -47,6 +47,16 @@ class Game extends React.Component {
     });
   }
 
+  _resetButton() {
+    if(this.state.gameover){
+      return (
+        <div onClick={() => this._newGame()}>
+          Again!
+        </div>
+      );
+    }
+  }
+
   render() {
     if(!this.state.id){
       return <div>Loading...</div>
@@ -56,6 +66,7 @@ class Game extends React.Component {
       <div className="game">
         <Board currentState={this.state.board} placeMarker={this._placeMarker.bind(this)}/>
         <MessageBar message={this.state.message} />
+        {this._resetButton()}
       </div>
     );
   }
