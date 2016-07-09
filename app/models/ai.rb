@@ -20,13 +20,10 @@ class AI
       board.reset_cell(cell)
     end
 
-    best_move = scores.max_by {|cell, score| score}[0]
-    best_score = scores.max_by {|cell, score| score}[1]
-
     if depth > 0
-      return best_score
+      scores.max_by {|cell, score| score}[1] #best score
     else
-      return best_move
+      scores.max_by {|cell, score| score}[0] #best move
     end
   end
 end

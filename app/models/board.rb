@@ -29,7 +29,7 @@ class Board
   end
 
   def full?
-    cells.all? {|i| i.nil? == false }
+    cells.all? {|i| !i.nil? }
   end
 
   def clean?
@@ -37,11 +37,11 @@ class Board
   end
 
   def tie?
-    winner == nil && full?
+    winner.nil? && full?
   end
 
   def gameover?
-    winner != nil || tie?
+    !winner.nil? || tie?
   end
 
   def winner
@@ -72,11 +72,7 @@ class Board
   end
 
   def available_cells
-    available_cells = []
-    cells.each_with_index do |cell, index|
-      available_cells << index if cell.nil?
-    end
-    return available_cells
+    cells.each_index.select { |i| cells[i].nil? }
   end
 
   def place_marker(marker, index)
