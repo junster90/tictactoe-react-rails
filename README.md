@@ -1,24 +1,8 @@
-# README
+TICTACTOE-REACT-RAILS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Try it now!
+http://tictactoe-react-rails.herokuapp.com
 
-Things you may want to cover:
+This is a Rails 5 app hosting tic-tac-toe game, played against an unbeatable AI using a variant of the minimax algorithm. The view is built using the React.js library.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Comments are appreciated! :)
