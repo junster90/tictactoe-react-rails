@@ -1,15 +1,21 @@
 .game {
-  width: 60vw;
-  height: 60vw;
+  width: 620px;
+  height: 620px;
   margin: 0 auto;
   font-size: 10em;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
 
-  @media screen and (max-device-width: 768px){
-    width: 90vw;
-    height: 90vw;
-  }
-  @media screen and (max-device-width: 767px){
-    font-size: 5em;
+  // @media screen and (max-device-width: 768px){
+  //   width: 90vw;
+  //   height: 90vw;
+  // }
+  // @media screen and (max-device-width: 767px){
+  //   font-size: 5em;
+  // }
+  
+  .title {
+    font-size: 42px;
   }
 
   .board {
@@ -23,39 +29,57 @@
       width: 33.3333333333%;
       height: 33.3333333333%;
       box-sizing: border-box;
-      text-align: center;
       font-family: FontAwesome;
-      padding-top: 5%;
+      padding-top: 20px;
+      background: #F2EBBF;
+      border-radius: 10px;
       
       &:nth-child(-n+3) {
-        border-bottom: 5px solid black;
+        border-bottom: 5px solid #F3B562;
       }
 
       &:nth-child(n+7) {
-        border-top: 5px solid black;
+        border-top: 5px solid #F3B562;
       }
 
       &:nth-child(3n+1) {
-        border-right: 5px solid black;
+        border-right: 5px solid #F3B562;
       }
 
       &:nth-child(3n+3) {
-        border-left: 5px solid black;
+        border-left: 5px solid #F3B562;
       }
     }
 
     .x:before {
       content: "\f00d";
+      color: #8CBEB2;
     }
 
     .o:before {
       content: "\f10c";
+      color: #5C4B51;
     }
   }
 
   .message-bar {
     p {
       font-size: 24px;
+    }
+  }
+
+  .reset {
+    background: #F06060;
+    color: white;
+    font-size: 30px;
+    width: 200px;
+    margin: 0 auto;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    &:hover {
+      background: darken(#F06060, 5%);
     }
   }
 }
